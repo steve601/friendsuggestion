@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <style>
+            h1{
+                text-align: center;
+                color: slategray;
+            }
+            body{
+                background-color: aliceblue;
+            }
+            form{
+                padding-left: 440px;
+            }
+            .content label{
+                padding-left: 140px;
+                font-size: 25px;
+                color:black;
+            }
+            .content select{
+                width: 465px;
+                height: 35px;
+                border: 2px solid red;
+                border-radius: 5px;
+            }
+            .btn button{
+                width: 175px;
+                height: 35px;
+                color: black;
+                background-color: cyan;
+                border: 2px solid black;
+                border-radius: 5px;
+            }
+            .pred{
+                padding-left: 440px;
+
+            }
+            .pred h2{
+                color: slategray;
+            }
+            .pred ul li{
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>SOCIAL MEDIA FRIEND SUGGESTION</h1>
+        <form action = '/suggest' method = 'POST'>
+            <div class="content">           
+                <label for="person">Select person...</label><br>
+                <select name="person" id="person">
+                    {% for name in person_names %}
+                        <option value="{{ name }}">{{ name }}</option>
+                    {% endfor %}
+                </select>
+            </div><br>
+            <div class="btn">
+                <button type= submit>Show suggestions...</button>
+            </div>
+        </form>
+        {% if suggestions %}
+            <div class = 'pred'>
+            <h2>Suggested friends for {{name_of_person}};</h2>
+            <ul>
+                {% for suggestion in suggestions %}
+                    <li>{{ suggestion }}</li>
+                {% endfor %}
+            </ul>
+            </div>
+        {% endif %}
+    </body>
+</html>
